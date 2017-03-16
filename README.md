@@ -16,6 +16,16 @@ We are going to use Slack as our communication for this project
 [Slack invite link (valid until 19/3/2017 23:00)](https://basicsecuritypxl.slack.com/shared_invite/MTUzMzM1ODEwNzU3LTE0ODkzNTY4NDMtMTljNWYyNDYwMg)
 
 
+## Agreements + Software/Technologies
+### Agreements
+
+- Commits to github will happen [ADD/EDIT/MOVED/REMOVED]
+
+### Software
+
+- We will be using Office word for itmanagement
+- We will be using a .net enviroment to make the encryption program
+
 ## General assignment
 ### IT Management
 - This paper is going to be written in Markdown for usability
