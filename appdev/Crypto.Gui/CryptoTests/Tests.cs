@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Crypto.encrypt;
+using System.IO;
 
 namespace CryptoTests
 {
@@ -25,6 +26,25 @@ namespace CryptoTests
             String encrypted = AES.Encrypt(message, "Passwoordzin", "salt", "SHA1", 2, "abcdefghijlmnopq", 256);
             Assert.That(AES.Decrypt(encrypted, "Passwoordzin", "salt", "SHA1", 2, "abcdefghijlmnopq", 256).Equals(message));
         }
+
+        [Test]
+        public void ShouldCreateKeyFiles()
+        {
+            RSA.Create();
+            Assert.That(File.Exists("C:\\TestCrypto\\Keys_A\\Private_A.txt"));
+        }
+
+        [Test]
+        public void ShouldDecryptMessage()
+        {
+            RSA.Create();
+
+            String encryptedMessage = RSA.Encrypt("C:\\TestCrypto\\Keys_A\\ToEncrypt.txt");
+            String decryptedMessage = RSA.Decrypt("C:\\TestCrypto\\Keys_A\\Encrypted.txt");
+            String result = decryptedMessage.Trim();
+            Assert.That(result.Equals("HelloWorld!"));
+
+
+        }
     }
 }
-
