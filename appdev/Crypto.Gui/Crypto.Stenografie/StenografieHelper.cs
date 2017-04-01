@@ -28,49 +28,55 @@ namespace Crypto.Stenografie
             int letterWaarde = 0;
             long pixelPositie = 0;
             int nullen = 0;
-            // één pixel in rgb
             int R = 0, G = 0, B = 0;
 
-            // TODO: De gehele afbeelding afgaan
+            // Voor de hele afbeelding hoogte
             for (int i = 0; i < afbeelding.Height; i++)
             {
+                // Voor de hele afbeelding breedte
                 for (int j = 0; j < afbeelding.Width; j++)
                 {
-                    // TODO: De pixel nemen en de kleinste bit beschikbaar maken
+                    // De kleur van de pixel van een afbeelding toekennen aan een lokale var "pixel"
                     Color pixel = afbeelding.GetPixel(j, i);
 
+                    // TODO: Uitzoeken hoe dit weer werkt
                     R = pixel.R - pixel.R % 2;
                     G = pixel.G - pixel.G % 2;
                     B = pixel.B - pixel.B % 2;
 
-                    // TODO: R, G en B invullen
+                    // Elke kleur (RGB) bestaad uit 3 getallen dus deze doorlopen we
                     for (int n = 0; n < 3; n++)
                     {
-                        if (pixelPositie % 8 == 0) // Elke rgb bestaat uit 8 bits
+                        // Bij de 8ste positie
+                        if (pixelPositie % 8 == 0)
                         {
-                            // TODO: Als de 8 bits klaar zijn
+                            // als de opdracht is "vullen_met_nullen"
+                            // TODO: nullen == 8 ???
                             if (opdracht == Opdracht.Vullen_met_nullen && nullen == 8)
                             {
-                                //TODO: vul de laatste pixel in
+                                // TODO: Als de rest van (de pixel)/3 kleiner is dan 2 --> 0 1 2 3 4 5 6 (7)
                                 if ((pixelPositie - 1) % 3 < 2)
                                 {
+                                    // verander de kleur van de pixel op positie
                                     afbeelding.SetPixel(j, i, Color.FromArgb(R, G, B));
                                 }
                                 return afbeelding;
                             }
 
-                            // TODO: Verberg eerst de volledige boodschap om vervolgens met nullen te vullen
+                            // Wanneer de letterPositie buiten de text-lengte gaat (er is nog afbeelding "over" maar geen tekst om er in te verbergen
                             if (letterPositie >= text.Length)
                             {
+                                // Vul de rest van de afbeelding (pixels kleuren) met nullen
                                 opdracht = Opdracht.Vullen_met_nullen;
                             }
                             else
                             {
+                                // neem de letterwaarde van de letter op positie
                                 letterWaarde = text[letterPositie++];
                             }
                         }
 
-                        // TODO: De pixel en rgb waarde waar de data word ingestoken
+                        // De rest van de pixelpositie -> word opgevangen in een int dus geen kommagetallen
                         switch (pixelPositie % 3)
                         {
                             // in geval van R
