@@ -8,5 +8,6 @@ namespace Crypto.Gui.Model
 {
     class Message
     {
+
     }
 }

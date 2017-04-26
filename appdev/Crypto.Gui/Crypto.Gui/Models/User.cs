@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Crypto.Gui
 {
     /// <summary>
     /// Class which represents a user
     /// </summary>
-    public class User
+
+    public class User 
     {
-        public string Username { get; }
-        private string Salt;
-        private string Hash;
-        
+
+        public string Username { set; get; }
+        public string Salt { set; get; }
+        public string Hash { set; get; }
+
         //Suggestions:
         //ArrayList of Contacts?
         //Avater?
@@ -36,6 +41,12 @@ namespace Crypto.Gui
             this.Hash = hash;
         }
 
+        //Default contstructor
+        public User()
+        {
+            
+        }
+
 
         public bool changePassword()
         {
@@ -55,6 +66,46 @@ namespace Crypto.Gui
             if (this.Username.Equals(userName) && this.Salt.Equals(userSalt) && this.Hash.Equals(userHash))
                 return true;
             return false;
+        }
+
+        public void SaveAsXML()
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+           $"//WhatsUpp//{Username}";
+
+            //Serializing the user.
+            XmlSerializer serializer = new XmlSerializer(typeof(User));
+
+
+            //Check if WhatsUpp folder exists
+            if (!Directory.Exists(path))
+                System.IO.Directory.CreateDirectory(path);
+
+            FileStream file = File.Create(path + "//User.xml");
+            serializer.Serialize(file, this);
+            file.Close();
+
+        }
+
+        public User ReadFromXML(string Username)
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+           $"//WhatsUpp//{Username}";
+
+
+            //Serializing the user.
+            XmlSerializer serializer = new XmlSerializer(typeof(User));
+
+
+            //Check if WhatsUpp folder exists
+            if (!Directory.Exists(path))
+                System.IO.Directory.CreateDirectory(path);
+
+            FileStream file = File.Create(path + "//User.xml");
+            User newUser = (User) serializer.Deserialize(file);
+            file.Close();
+
+            return newUser;
         }
 
     }

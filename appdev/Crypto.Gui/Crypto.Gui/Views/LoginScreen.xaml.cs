@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Crypto.Gui
 {
@@ -21,6 +25,15 @@ namespace Crypto.Gui
     {
         public LoginScreen()
         {
+            //Initializing the environment
+
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+           $"//WhatsUpp";
+            //Check if WhatsUpp folder exists
+            if (!Directory.Exists(path))
+                System.IO.Directory.CreateDirectory(path);
+
+
             InitializeComponent();
         }
 
@@ -43,6 +56,13 @@ namespace Crypto.Gui
             //Make new User object and serialize it with XMLSerializer to make it easier to write to the user.xml file.
             //Store username (redundant?), salt and hash in the user.xml file 
             //Store public keys and private keys in the same folder.
+
+            User newUser = new User(this.usernameTextBox.Text, Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+
+            newUser.SaveAsXML();
+
+            new Whatsupp().Show();
+            this.Close();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -60,7 +80,7 @@ namespace Crypto.Gui
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             //Exit and closes the application.
-
+            Environment.Exit(0);
         }
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
