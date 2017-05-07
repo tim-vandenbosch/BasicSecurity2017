@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Gui", "Crypto.Gui\Crypto.Gui.csproj", "{5AF4AF7E-0ABC-4689-98FC-4DEF4DF1A3D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.encrypt", "Crypto.encrypt\Crypto.encrypt.csproj", "{7AE0B739-1D06-42A2-80BB-7DEBD67018FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crypto.Stenografie", "Crypto.Stenografie\Crypto.Stenografie.csproj", "{60FF5257-E77B-4D50-88F5-B6C1FBEF7BE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AF4AF7E-0ABC-4689-98FC-4DEF4DF1A3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF4AF7E-0ABC-4689-98FC-4DEF4DF1A3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF4AF7E-0ABC-4689-98FC-4DEF4DF1A3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF4AF7E-0ABC-4689-98FC-4DEF4DF1A3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AE0B739-1D06-42A2-80BB-7DEBD67018FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AE0B739-1D06-42A2-80BB-7DEBD67018FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AE0B739-1D06-42A2-80BB-7DEBD67018FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AE0B739-1D06-42A2-80BB-7DEBD67018FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FF5257-E77B-4D50-88F5-B6C1FBEF7BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FF5257-E77B-4D50-88F5-B6C1FBEF7BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FF5257-E77B-4D50-88F5-B6C1FBEF7BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FF5257-E77B-4D50-88F5-B6C1FBEF7BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
