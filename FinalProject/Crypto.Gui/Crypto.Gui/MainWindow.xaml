@@ -64,7 +64,14 @@
                     <Button x:Name="btnValidate" Content="Validate Hash" HorizontalAlignment="Left" Margin="388,221,0,0" VerticalAlignment="Top" Width="94" Height="23" Click="btnValidate_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Stenografie">
+            <TabItem Header="Stenografie" Height="22" VerticalAlignment="Top">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="71*"/>
+                        <ColumnDefinition Width="420*"/>
+                    </Grid.ColumnDefinitions>
+
+                </Grid>
             </TabItem>
         </TabControl>
 
