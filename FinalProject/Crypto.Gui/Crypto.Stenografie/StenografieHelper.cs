@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Crypto.Stenografie
 {
-    class StenografieHelper
+    public class StenografieHelper
     {
         public enum Opdracht
         {

@@ -66,10 +66,13 @@
             </TabItem>
             <TabItem Header="Stenografie" Height="22" VerticalAlignment="Top">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,-1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="71*"/>
-                        <ColumnDefinition Width="420*"/>
-                    </Grid.ColumnDefinitions>
+                    <Button x:Name="browseImageButton" Content="Browse for an image" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="125" Click="browseImageButton_Click"/>
+                    <Button x:Name="hideButton" Content="Hide the data" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="125" Click="HideData"/>
+                    <Button x:Name="discoverButton" Content="Rediscover the data" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="125" Click="discoverButton_Click"/>
+                    <Image x:Name="selectedImage" HorizontalAlignment="Left" Height="139" Margin="140,10,0,0" VerticalAlignment="Top" Width="341"/>
+                    <TextBox x:Name="richTextBox" HorizontalAlignment="Left" Height="103" Margin="140,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="341" ToolTip="Your hidden text comes here"/>
+                    <CheckBox x:Name="encrypedCheckBox" Content="Enable password" HorizontalAlignment="Left" Margin="10,214,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="23" Margin="10,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Your password here"/>
 
                 </Grid>
             </TabItem>

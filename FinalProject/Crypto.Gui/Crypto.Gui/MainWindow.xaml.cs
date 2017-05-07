@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,7 @@ using System.IO;
 using Microsoft.Win32;
 using folder = System.Windows.Forms;
 using System.Threading;
+using Crypto.Stenografie;
 
 namespace Crypto.Gui
 {
@@ -26,10 +29,12 @@ namespace Crypto.Gui
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Microsoft.Win32.OpenFileDialog browseVenster = new Microsoft.Win32.OpenFileDialog();
+        private String imagePath;
+
         public MainWindow()
         {
             InitializeComponent();
-
         }
         private void btnDecrypt_Click(object sender, RoutedEventArgs e)
         {
@@ -318,6 +323,112 @@ namespace Crypto.Gui
                 label.Visibility = Visibility.Hidden;
                 label_Copy.Visibility = Visibility.Hidden;
             }
+        }
+
+        #region Stenografie
+        private void browseImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            browseVenster.Filter = "Image Files (*.jpeg; *.png; *.bmp)| *.jpg; *.png; *.bmp";
+            if (browseVenster.ShowDialog() == true)
+            {
+                string padFoto = browseVenster.FileName;
+                //FileNameLabel.Content = selectedFileName;
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(padFoto);
+                bitmap.EndInit();
+                selectedImage.Source = bitmap;
+                // labelSelectedImage.Content = padFoto;
+                imagePath = padFoto;
+            }
+        }
+
+        private void HideData(object sender, RoutedEventArgs e)
+        {
+            string _text = richTextBox.Text;
+
+            // string padFoto = labelSelectedImage.Content.ToString();
+            Bitmap bitmap = new Bitmap(imagePath);
+
+            if (_text.Equals(""))
+            {
+                System.Windows.MessageBox.Show("The text you want to hide can't be empty", "Warning");
+                return;
+            }
+
+            if (encrypedCheckBox.IsChecked == true)
+            {
+                if (passwordTextBox.Text.Length < 6)
+                {
+                    System.Windows.MessageBox.Show("Please enter a password with at least 6 characters", "Warning");
+                    return;
+                }
+                else
+                {
+                    _text = StenografieCrypto.EncryptStringAES(_text, passwordTextBox.Text);
+                }
+            }
+
+            bitmap = StenografieHelper.embedText(_text, bitmap);
+
+            System.Windows.MessageBox.Show("Your text was hidden in the image successfully!", "Done");
+            maakLeeg();
+
+            Microsoft.Win32.SaveFileDialog save_dialog = new Microsoft.Win32.SaveFileDialog();
+            save_dialog.Filter = "Png Image|*.png|Bitmap Image|*.bmp";
+
+            if (save_dialog.ShowDialog() == true)
+            {
+                switch (save_dialog.FilterIndex)
+                {
+                    case 0:
+                        {
+                            bitmap.Save(save_dialog.FileName, ImageFormat.Png);
+                        }
+                        break;
+                    case 1:
+                        {
+                            bitmap.Save(save_dialog.FileName, ImageFormat.Bmp);
+                        }
+                        break;
+                }
+
+
+            }
+        }
+
+        /// <summary>
+        /// Maar de invoervelden leeg
+        /// </summary>
+        private void maakLeeg()
+        {
+            richTextBox.Text = "";
+            passwordTextBox.Text = "";
+            encrypedCheckBox.IsChecked = false;
+        }
+        #endregion
+
+        private void discoverButton_Click(object sender, RoutedEventArgs e)
+        {
+            string padFoto = browseVenster.FileName;
+            Bitmap bitmap = new Bitmap(padFoto);
+
+            string extractedText = StenografieHelper.extractText(bitmap);
+
+            if (encrypedCheckBox.IsChecked == true)
+            {
+                try
+                {
+                    extractedText = StenografieCrypto.DecryptStringAES(extractedText, passwordTextBox.Text);
+                }
+                catch
+                {
+                    System.Windows.MessageBox.Show("Wrong password", "Error");
+
+                    return;
+                }
+            }
+            richTextBox.Text = extractedText;
         }
     }
     

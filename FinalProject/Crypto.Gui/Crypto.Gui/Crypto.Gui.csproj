@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -100,6 +101,10 @@
     <ProjectReference Include="..\Crypto.encrypt\Crypto.encrypt.csproj">
       <Project>{7ae0b739-1d06-42a2-80bb-7debd67018fc}</Project>
       <Name>Crypto.encrypt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crypto.Stenografie\Crypto.Stenografie.csproj">
+      <Project>{58CF6703-7E2B-4BA8-A8E1-1B942BA8536A}</Project>
+      <Name>Crypto.Stenografie</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
