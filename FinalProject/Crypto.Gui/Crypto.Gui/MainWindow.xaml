@@ -36,8 +36,8 @@
                     <Label x:Name="label" Content="Name Sender:" HorizontalAlignment="Left" Margin="108,85,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label_Copy" Content="Name Receiver:" HorizontalAlignment="Left" Margin="108,119,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="103" Margin="177,153,0,0" Height="48" Click="btnStart_Click"/>
-                    <TextBox x:Name="txtSender" HorizontalAlignment="Left" Height="23" Margin="198,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="txtReceiver" HorizontalAlignment="Left" Height="23" Margin="198,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtSender" HorizontalAlignment="Left" Height="23" Margin="205,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtReceiver" HorizontalAlignment="Left" Height="23" Margin="205,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Decrypt">
@@ -48,16 +48,16 @@
                     <Label Content="Hash: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,220,0,0" Height="24"/>
                     <TextBox x:Name="txtdHash" HorizontalAlignment="Left" Height="23" Margin="63,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="228"/>
                     <Button x:Name="btndHash" Content="Browse" HorizontalAlignment="Left" Margin="296,221,0,0" VerticalAlignment="Top" Width="87" Height="23" Click="btndHash_Click"/>
-                    <Label Content="File To Decrypt: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,41,0,0" Height="24"/>
+                    <Label Content="File To Decrypt: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,41,0,0" Height="29"/>
                     <TextBox x:Name="txtFileToDecrypt" HorizontalAlignment="Left" Height="23" Margin="109,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
                     <Button x:Name="btnFileToDecrypt" Content="Browse" HorizontalAlignment="Left" Margin="388,42,0,0" VerticalAlignment="Top" Width="94" Height="23" Click="btnFileToDecrypt_Click"/>
-                    <Label Content="Encryption method: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,70,0,0" Height="24"/>
+                    <Label Content="Encryption method: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,70,0,0" Height="26"/>
                     <RadioButton x:Name="radDES1" Content="DES" HorizontalAlignment="Left" Margin="388,76,0,0" VerticalAlignment="Top"/>
                     <RadioButton x:Name="radAES1" Content="AES" HorizontalAlignment="Left" Margin="281,76,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" RenderTransformOrigin="2.234,0.725"/>
-                    <Label Content="Key To Decrypt: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,95,0,0" Height="24"/>
+                    <Label Content="Key To Decrypt: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="10,95,0,0" Height="28"/>
                     <TextBox x:Name="txtKeyToDecrypt" HorizontalAlignment="Left" Height="23" Margin="109,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
                     <Button x:Name="btnKeyToDecrypt" Content="Browse" HorizontalAlignment="Left" Margin="388,96,0,0" VerticalAlignment="Top" Width="94" Height="23" Click="btnKeyToDecrypt_Click"/>
-                    <Label Content="Decrypted File: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="8,123,0,0" Height="24"/>
+                    <Label Content="Decrypted File: &#xD;&#xA;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.444,3.181" Margin="8,123,0,0" Height="31"/>
                     <TextBox x:Name="txtDecryptedFile" HorizontalAlignment="Left" Height="23" Margin="107,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276"/>
                     <Button x:Name="btnDecryptedFile" Content="Browse" HorizontalAlignment="Left" Margin="388,124,0,0" VerticalAlignment="Top" Width="94" Height="23" Click="btnDecryptedFile_Click"/>
                     <Button x:Name="btnDecrypt" Content="Decrypt" HorizontalAlignment="Left" Margin="388,162,0,0" VerticalAlignment="Top" Width="94" Height="54" RenderTransformOrigin="0.687,0.833" Click="btnDecrypt_Click_1"/>

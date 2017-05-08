@@ -38,20 +38,6 @@ namespace Crypto.Gui
         }
         private void btnDecrypt_Click(object sender, RoutedEventArgs e)
         {
-            // test code
-
-            //string signedhash = File.ReadAllText("C:\\TestCrypto\\SignedHash.txt");
-            //string encryptedMessage = File.ReadAllText("C:\\TestCrypto\\encryptedMessage.txt");
-            //string encryptedSKey = File.ReadAllText("C:\\TestCrypto\\encryptedKey.txt");
-            //string decryptedSKey = encrypt.RSA.Decrypt(encryptedSKey);
-            //File.WriteAllText(@"C:\TestCrypto\decryptedKey.txt", decryptedSKey);
-            //string decryptedMessage = encrypt.DES.Decrypt(encryptedMessage, decryptedSKey);
-            //File.WriteAllText(@"C:\TestCrypto\decryptedMessage.txt", decryptedMessage);
-
-
-            //string message = File.ReadAllText("C:\\TestCrypto\\decryptedMessage.txt");
-            //MessageBox.Show(encrypt.RSA.Verify(message, signedhash).ToString());
-
 
         }
 
@@ -253,11 +239,23 @@ namespace Crypto.Gui
             txtdHash.Text = Path;
         }
 
+        // Hash validation
         private void btnValidate_Click(object sender, RoutedEventArgs e)
         {
+            var result =
+                encrypt.RSA.Verify(txtDecryptedFile.Text + "\\DecryptedFile.txt", txtdHash.Text, txtdKeys.Text,
+                    txtSender.Text);
             if (txtDecryptedFile.Text != "")
             {
-                MessageBox.Show(encrypt.RSA.Verify(txtDecryptedFile.Text + "\\DecryptedFile.txt", txtdHash.Text, txtdKeys.Text, txtSender.Text).ToString());
+                if (result == true)
+                {
+                    MessageBox.Show("Het bestand kon gevalideerd worden!", "Succes", MessageBoxButton.OK,
+                        MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Het bestand kon niet gevalideerd worden!", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
