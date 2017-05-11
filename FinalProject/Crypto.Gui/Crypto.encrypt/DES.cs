@@ -13,16 +13,16 @@ namespace Crypto.encrypt
         public static void Encrypt(string path, string destination, string sKey) // Encrypteren van het bestand met behulp van de sKey
             {
 
-                byte[] byteKey = ASCIIEncoding.ASCII.GetBytes(sKey); // key omzetten naar byte array
+                byte[] byteKey = ASCIIEncoding.ASCII.GetBytes(sKey); // Key omzetten naar byte array
 
-                //streams initializeren
+                //Streams initialiseren
                 DESCryptoServiceProvider desProvider = new DESCryptoServiceProvider();
                 MemoryStream memoryStream = new MemoryStream();
                 CryptoStream cryptoStream = new CryptoStream(memoryStream, desProvider.CreateEncryptor(byteKey, byteKey), CryptoStreamMode.Write);
 
             
 
-                // encrypteren van het bericht
+                // Encrypteren van het bericht
                 StreamWriter writer = new StreamWriter(cryptoStream);
                 writer.Write(File.ReadAllText(path));
                 writer.Flush();
@@ -30,12 +30,12 @@ namespace Crypto.encrypt
                 writer.Flush();
                 
 
-                // geëncrypteerd bericht omzetten naar string en wegschrijven.
+                // Geëncrypteerd bericht omzetten naar string en wegschrijven.
                 string encrypted = Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
                 File.WriteAllText(destination + "\\EncryptedFile.txt", encrypted);
             }
 
-        public static string GenerateKey() // DES sKey generen
+        public static string GenerateKey() // DES Key aanmaken
         {
             DESCryptoServiceProvider desProv = (DESCryptoServiceProvider)DESCryptoServiceProvider.Create();
             return ASCIIEncoding.ASCII.GetString(desProv.Key);
@@ -45,13 +45,13 @@ namespace Crypto.encrypt
             {
                 byte[] byteKey = ASCIIEncoding.ASCII.GetBytes(sKey);
 
-                // initializeren streams
+                // Initialiseren van de streams
                 DESCryptoServiceProvider desProvider = new DESCryptoServiceProvider();
                 MemoryStream memoryStream = new MemoryStream(Convert.FromBase64String(File.ReadAllText(path)));
                 CryptoStream cryptoStream = new CryptoStream(memoryStream, desProvider.CreateDecryptor(byteKey, byteKey), CryptoStreamMode.Read);
                 StreamReader reader = new StreamReader(cryptoStream);
 
-                File.WriteAllText(destination + "\\DecryptedFile.txt", reader.ReadToEnd()); // decrypted file wegschrijven
+                File.WriteAllText(destination + "\\DecryptedFile.txt", reader.ReadToEnd()); // Geënecrypteerd bericht wegschrijven
             }
         }
     }
