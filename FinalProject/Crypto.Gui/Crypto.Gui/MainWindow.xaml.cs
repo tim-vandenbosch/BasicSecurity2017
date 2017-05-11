@@ -343,55 +343,67 @@ namespace Crypto.Gui
 
         private void HideData(object sender, RoutedEventArgs e)
         {
-            string _text = richTextBox.Text;
-
-            // string padFoto = labelSelectedImage.Content.ToString();
-            Bitmap bitmap = new Bitmap(imagePath);
-
-            if (_text.Equals(""))
+            try
             {
-                System.Windows.MessageBox.Show("The text you want to hide can't be empty", "Warning");
-                return;
-            }
+                string _text = richTextBox.Text;
 
-            if (encrypedCheckBox.IsChecked == true)
-            {
-                if (passwordTextBox.Text.Length < 6)
+                // string padFoto = labelSelectedImage.Content.ToString();
+                Bitmap bitmap = new Bitmap(imagePath);
+
+                if (_text.Equals(""))
                 {
-                    System.Windows.MessageBox.Show("Please enter a password with at least 6 characters", "Warning");
+                    MessageBox.Show("The text you want to hide can't be empty", "Warning");
                     return;
                 }
-                else
+
+                if (encrypedCheckBox.IsChecked == true)
                 {
-                    _text = StenografieCrypto.EncryptStringAES(_text, passwordTextBox.Text);
+                    if (passwordTextBox.Text.Length < 6)
+                    {
+                        MessageBox.Show("Please enter a password with at least 6 characters", "Warning");
+                        return;
+                    }
+                    else
+                    {
+                        _text = StenografieCrypto.EncryptStringAES(_text, passwordTextBox.Text);
+                    }
                 }
-            }
 
-            bitmap = StenografieHelper.embedText(_text, bitmap);
+                bitmap = StenografieHelper.embedText(_text, bitmap);
 
-            System.Windows.MessageBox.Show("Your text was hidden in the image successfully!", "Done");
-            maakLeeg();
+                MessageBox.Show("Your text was hidden in the image successfully!", "Done");
+                maakLeeg();
 
-            Microsoft.Win32.SaveFileDialog save_dialog = new Microsoft.Win32.SaveFileDialog();
-            save_dialog.Filter = "Png Image|*.png|Bitmap Image|*.bmp";
+                SaveFileDialog save_dialog = new SaveFileDialog();
+                save_dialog.Filter = "Png Image|*.png|Bitmap Image|*.bmp";
 
-            if (save_dialog.ShowDialog() == true)
-            {
-                switch (save_dialog.FilterIndex)
+                if (save_dialog.ShowDialog() == true)
                 {
-                    case 0:
+                    switch (save_dialog.FilterIndex)
+                    {
+                        case 0:
                         {
                             bitmap.Save(save_dialog.FileName, ImageFormat.Png);
                         }
-                        break;
-                    case 1:
+                            break;
+                        case 1:
                         {
                             bitmap.Save(save_dialog.FileName, ImageFormat.Bmp);
                         }
-                        break;
+                            break;
+                    }
+
+
                 }
-
-
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Something went wrong");
+                // throw;
+            }
+            finally
+            {
+                maakLeeg();
             }
         }
 
