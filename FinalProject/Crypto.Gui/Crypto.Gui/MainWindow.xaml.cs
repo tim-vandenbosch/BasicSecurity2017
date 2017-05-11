@@ -420,25 +420,32 @@ namespace Crypto.Gui
 
         private void discoverButton_Click(object sender, RoutedEventArgs e)
         {
-            string padFoto = browseVenster.FileName;
-            Bitmap bitmap = new Bitmap(padFoto);
-
-            string extractedText = StenografieHelper.extractText(bitmap);
-
-            if (encrypedCheckBox.IsChecked == true)
+            try
             {
-                try
-                {
-                    extractedText = StenografieCrypto.DecryptStringAES(extractedText, passwordTextBox.Text);
-                }
-                catch
-                {
-                    System.Windows.MessageBox.Show("Wrong password", "Error");
+                string padFoto = browseVenster.FileName;
+                Bitmap bitmap = new Bitmap(padFoto);
 
-                    return;
+                string extractedText = StenografieHelper.extractText(bitmap);
+
+                if (encrypedCheckBox.IsChecked == true)
+                {
+                    try
+                    {
+                        extractedText = StenografieCrypto.DecryptStringAES(extractedText, passwordTextBox.Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Wrong password", "Error");
+
+                        return;
+                    }
                 }
+                richTextBox.Text = extractedText;
             }
-            richTextBox.Text = extractedText;
+            catch (Exception exception)
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
     }
     
